@@ -15,6 +15,9 @@
 .demo-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding-left: 180px; /* Space for fixed sidebar */
+  padding-right: 20px; /* Balance the layout */
+  transition: padding 0.3s ease;
 }
 
 .header-container {
@@ -127,6 +130,7 @@ h2 {
   flex-direction: column;
   gap: 8px;
   z-index: 100;
+  min-width: 140px; /* Consistent width for fixed sidebar */
 }
 
 .tab {
@@ -227,6 +231,12 @@ h2 {
 }
 
 /* Responsive */
+@media (max-width: 1280px) {
+  .demo-container {
+    padding-left: 160px; /* Slightly less padding for medium screens */
+  }
+}
+
 @media (max-width: 1024px) {
   .tabs {
     position: relative;
@@ -236,6 +246,11 @@ h2 {
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 30px;
+  }
+
+  .demo-container {
+    padding-left: 20px; /* Reset to normal padding on smaller screens */
+    padding-right: 20px;
   }
 }
 
