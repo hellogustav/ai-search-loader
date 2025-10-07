@@ -17,7 +17,8 @@ app.get('/health', (req, res) => {
 });
 
 // Handle all other routes by serving the React app
-app.get('/*', (req, res) => {
+// Using middleware approach for Express v5 compatibility
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
