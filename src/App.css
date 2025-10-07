@@ -15,7 +15,7 @@
 .demo-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding-left: 180px; /* Space for fixed sidebar */
+  padding-left: 230px; /* Space for fixed sidebar - increased by 50px total */
   padding-right: 20px; /* Balance the layout */
   transition: padding 0.3s ease;
 }
@@ -233,7 +233,7 @@ h2 {
 /* Responsive */
 @media (max-width: 1280px) {
   .demo-container {
-    padding-left: 160px; /* Slightly less padding for medium screens */
+    padding-left: 210px; /* Slightly less padding for medium screens - increased */
   }
 }
 
