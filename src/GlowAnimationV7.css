@@ -1,0 +1,18 @@
+.glow-animation-v7-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.glow-animation-v7-canvas {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+}

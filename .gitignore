@@ -24,3 +24,11 @@ yarn-error.log*
 *.swp
 *.swo
 *~
+
+# Archive files (distribution packages)
+*.tar.gz
+*.zip
+
+# Package distribution folders
+glow-animation-v7-package/
+ai-search-loader-typewriter/

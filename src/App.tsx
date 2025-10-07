@@ -6,12 +6,15 @@ import GlowAnimationV3 from './GlowAnimationV3';
 import GlowAnimationV4 from './GlowAnimationV4';
 import GlowAnimationV5 from './GlowAnimationV5';
 import GlowAnimationV6 from './GlowAnimationV6';
+import GlowAnimationV7 from './GlowAnimationV7';
+import GlowAnimationV8 from './GlowAnimationV8';
 import './App.css';
 
 function App() {
   const [isDark, setIsDark] = useState(true);
-  const [activeTab, setActiveTab] = useState<'v1' | 'v1.1' | 'v2' | 'v3' | 'v4' | 'v5' | 'v6'>('v1');
+  const [activeTab, setActiveTab] = useState<'v1' | 'v1.1' | 'v2' | 'v3' | 'v4' | 'v5' | 'v6' | 'v7' | 'v8'>('v1');
   const [v6SubTab, setV6SubTab] = useState<'default' | 'trail' | 'speed' | 'background' | 'trace' | 'colors' | 'large'>('default');
+  const [v8SubTab, setV8SubTab] = useState<'fade' | 'slide' | 'typewriter' | 'flip' | 'blur' | 'speed' | 'custom' | 'notext'>('fade');
 
   return (
     <div className={`App ${isDark ? 'dark' : 'light'}`}>
@@ -66,6 +69,18 @@ function App() {
           >
             V6 - Neon Tracer
           </button>
+          <button
+            className={`tab ${activeTab === 'v7' ? 'active' : ''}`}
+            onClick={() => setActiveTab('v7')}
+          >
+            V7 - Production
+          </button>
+          <button
+            className={`tab ${activeTab === 'v8' ? 'active' : ''}`}
+            onClick={() => setActiveTab('v8')}
+          >
+            V8 - AI Search Text
+          </button>
         </div>
 
         {activeTab === 'v1' && (
@@ -96,10 +111,18 @@ function App() {
 
         {activeTab === 'v1.1' && (
           <>
-            <h2 style={{ color: '#8A5CFF', marginTop: '40px', marginBottom: '20px' }}>Version 1.1 - Dynamic Neon Trail</h2>
+            <h2 style={{ color: '#8A5CFF', marginTop: '40px', marginBottom: '20px' }}>Version 1.1 - Dynamic Neon Trail (Optimized)</h2>
             <div className="animation-wrapper">
-              <h2>Full Trail with 4px Dot</h2>
+              <h2>With @ Symbol Shape</h2>
               <GlowAnimationV1_1 />
+            </div>
+            <div className="animation-wrapper">
+              <h2>Trail Only (No Shape)</h2>
+              <GlowAnimationV1_1 hideShape={true} />
+            </div>
+            <div className="animation-wrapper">
+              <h2>Trail Only (Reverse Direction)</h2>
+              <GlowAnimationV1_1 hideShape={true} reverse={true} />
             </div>
           </>
         )}
@@ -298,6 +321,201 @@ function App() {
                 <h2>Large (280px)</h2>
                 <GlowAnimationV6 size={280} />
               </div>
+            )}
+          </>
+        )}
+
+        {activeTab === 'v7' && (
+          <>
+            <h2 style={{ color: '#FF9C26', marginTop: '40px', marginBottom: '20px' }}>Version 7 - Production Ready</h2>
+            <div className="animation-wrapper">
+              <h2>Neon Trail Animation (Reverse)</h2>
+              <GlowAnimationV7 reverse={true} />
+            </div>
+          </>
+        )}
+
+        {activeTab === 'v8' && (
+          <>
+            <h2 style={{ color: '#A855F7', marginTop: '40px', marginBottom: '20px' }}>Version 8 - AI Search with Loading Text</h2>
+
+            <div className="sub-tabs">
+              <button
+                className={`sub-tab ${v8SubTab === 'fade' ? 'active' : ''}`}
+                onClick={() => setV8SubTab('fade')}
+              >
+                Fade
+              </button>
+              <button
+                className={`sub-tab ${v8SubTab === 'slide' ? 'active' : ''}`}
+                onClick={() => setV8SubTab('slide')}
+              >
+                Slide
+              </button>
+              <button
+                className={`sub-tab ${v8SubTab === 'typewriter' ? 'active' : ''}`}
+                onClick={() => setV8SubTab('typewriter')}
+              >
+                Typewriter
+              </button>
+              <button
+                className={`sub-tab ${v8SubTab === 'flip' ? 'active' : ''}`}
+                onClick={() => setV8SubTab('flip')}
+              >
+                Flip
+              </button>
+              <button
+                className={`sub-tab ${v8SubTab === 'blur' ? 'active' : ''}`}
+                onClick={() => setV8SubTab('blur')}
+              >
+                Blur
+              </button>
+              <button
+                className={`sub-tab ${v8SubTab === 'speed' ? 'active' : ''}`}
+                onClick={() => setV8SubTab('speed')}
+              >
+                Speed
+              </button>
+              <button
+                className={`sub-tab ${v8SubTab === 'custom' ? 'active' : ''}`}
+                onClick={() => setV8SubTab('custom')}
+              >
+                Custom
+              </button>
+              <button
+                className={`sub-tab ${v8SubTab === 'notext' ? 'active' : ''}`}
+                onClick={() => setV8SubTab('notext')}
+              >
+                No Text
+              </button>
+            </div>
+
+            {v8SubTab === 'fade' && (
+              <div className="animation-wrapper">
+                <h2>Fade Animation</h2>
+                <GlowAnimationV8 textAnimation="fade" />
+              </div>
+            )}
+
+            {v8SubTab === 'slide' && (
+              <div className="animation-wrapper">
+                <h2>Slide Up Animation</h2>
+                <GlowAnimationV8 textAnimation="slide" />
+              </div>
+            )}
+
+            {v8SubTab === 'typewriter' && (
+              <div className="animation-wrapper">
+                <h2>Typewriter Effect</h2>
+                <GlowAnimationV8 textAnimation="typewriter" />
+              </div>
+            )}
+
+            {v8SubTab === 'flip' && (
+              <div className="animation-wrapper">
+                <h2>3D Flip Animation</h2>
+                <GlowAnimationV8 textAnimation="flip" />
+              </div>
+            )}
+
+            {v8SubTab === 'blur' && (
+              <>
+                <div className="animation-wrapper">
+                  <h2>Blur Transition</h2>
+                  <GlowAnimationV8 textAnimation="blur" />
+                </div>
+                <div className="animation-wrapper">
+                  <h2>Blur + Reverse Spinner</h2>
+                  <GlowAnimationV8 reverse={true} textAnimation="blur" />
+                </div>
+              </>
+            )}
+
+            {v8SubTab === 'speed' && (
+              <>
+                <div className="animation-wrapper">
+                  <h2>Fast Text Change (1.5s)</h2>
+                  <GlowAnimationV8 textChangeInterval={1.5} />
+                </div>
+                <div className="animation-wrapper">
+                  <h2>Normal Speed (2.5s)</h2>
+                  <GlowAnimationV8 />
+                </div>
+                <div className="animation-wrapper">
+                  <h2>Slow Text Change (4s)</h2>
+                  <GlowAnimationV8 textChangeInterval={4} textAnimation="slide" />
+                </div>
+                <div className="animation-wrapper">
+                  <h2>Very Slow (6s)</h2>
+                  <GlowAnimationV8 textChangeInterval={6} textAnimation="fade" />
+                </div>
+              </>
+            )}
+
+            {v8SubTab === 'custom' && (
+              <>
+                <div className="animation-wrapper">
+                  <h2>Tech Recruiting Messages</h2>
+                  <GlowAnimationV8
+                    customMessages={[
+                      "Searching GitHub profiles...",
+                      "Analyzing code quality...",
+                      "Checking tech stack match...",
+                      "Reviewing open source contributions...",
+                      "Evaluating problem-solving skills...",
+                      "Scanning Stack Overflow reputation...",
+                      "Processing coding test results...",
+                      "Matching team dynamics..."
+                    ]}
+                    textAnimation="typewriter"
+                  />
+                </div>
+                <div className="animation-wrapper">
+                  <h2>Executive Search Messages</h2>
+                  <GlowAnimationV8
+                    customMessages={[
+                      "Analyzing leadership experience...",
+                      "Reviewing board positions...",
+                      "Checking industry expertise...",
+                      "Evaluating strategic vision...",
+                      "Assessing cultural alignment...",
+                      "Reviewing compensation expectations...",
+                      "Verifying references...",
+                      "Finalizing executive matches..."
+                    ]}
+                    textAnimation="slide"
+                  />
+                </div>
+                <div className="animation-wrapper">
+                  <h2>Design Talent Messages</h2>
+                  <GlowAnimationV8
+                    customMessages={[
+                      "Browsing portfolios...",
+                      "Evaluating design aesthetics...",
+                      "Checking tool proficiency...",
+                      "Reviewing case studies...",
+                      "Assessing creativity levels...",
+                      "Analyzing UX principles...",
+                      "Matching style preferences...",
+                      "Finding design unicorns..."
+                    ]}
+                    textAnimation="flip"
+                  />
+                </div>
+              </>
+            )}
+
+            {v8SubTab === 'notext' && (
+              <>
+                <div className="animation-wrapper">
+                  <h2>Spinner Only (No Text)</h2>
+                  <GlowAnimationV8 showLoadingText={false} />
+                </div>
+                <div className="animation-wrapper">
+                  <h2>Reverse Spinner (No Text)</h2>
+                  <GlowAnimationV8 showLoadingText={false} reverse={true} />
+                </div>
+              </>
             )}
           </>
         )}

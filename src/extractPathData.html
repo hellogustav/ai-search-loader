@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Extract Path Data</title>
+</head>
+<body>
+    <svg width="162" height="162" viewBox="0 0 162 162" style="display: none;">
+        <path id="route" d="M70.3853 148.98 C179.5 142.5 166.347 -3.95972 71.4235 1.02014 C-23.5 6 -21.9998 141.5 70.3853 148.98 C158 143.777 73.5 90 73.5 90 C36.5 62.5 51.1843 30 73.5 30 C95.8156 30 116.056 59.9065 73.5 90 C29 126 37.0001 131.5 42.5766 139.206 C47 142.5 55.9799 148.811 70.3853 148.98"/>
+    </svg>
+
+    <script>
+        // Get path and calculate points
+        const path = document.getElementById('route');
+        const samples = 750;
+        const pathLength = path.getTotalLength();
+
+        const pathData = {
+            points: [],
+            colors: [],
+            curvatures: []
+        };
+
+        // Sample path points
+        for (let i = 0; i < samples; i++) {
+            const distance = (i / (samples - 1)) * pathLength;
+            const point = path.getPointAtLength(distance);
+
+            // Scale to 160x160 canvas with proper transform
+            // Original SVG is 162x162, scale factor is 1.094594595 * 1.08
+            const scaleFactor = 1.094594595 * 1.08;
+            const canvasSize = 160;
+            const svgSize = 162;
+
+            // Apply the same transform as in V1.1
+            // translate(80.9,80.87) scale(0.92) translate(-80.9,-80.87)
+            let x = point.x;
+            let y = point.y;
+
+            // First transform
+            x -= 80.9;
+            y -= 80.87;
+            x *= 0.92;
+            y *= 0.92;
+            x += 80.9;
+            y += 80.87;
+
+            // Scale
+            x *= scaleFactor;
+            y *= scaleFactor;
+
+            // Normalize to 0-1 range for 160px canvas
+            x = x / svgSize;
+            y = y / svgSize;
+
+            pathData.points.push({ x: x, y: y });
+
+            // Calculate color based on progress
+            const progress = i / samples;
+            let color;
+
+            if (progress < 0.22) {
+                const t = progress / 0.22;
+                color = {
+                    r: Math.round(255 * (1 - t) + 241 * t),
+                    g: Math.round(156 * (1 - t) + 69 * t),
+                    b: Math.round(38 * (1 - t) + 117 * t)
+                };
+            } else if (progress < 0.45) {
+                color = { r: 241, g: 69, b: 117 };
+            } else if (progress < 0.7) {
+                const t = (progress - 0.45) / 0.25;
+                color = {
+                    r: Math.round(241 * (1 - t) + 101 * t),
+                    g: Math.round(69 * (1 - t) + 189 * t),
+                    b: Math.round(117 * (1 - t) + 235 * t)
+                };
+            } else if (progress < 0.9) {
+                color = { r: 101, g: 189, b: 235 };
+            } else {
+                const t = (progress - 0.9) / 0.1;
+                color = {
+                    r: Math.round(101 * (1 - t) + 255 * t),
+                    g: Math.round(189 * (1 - t) + 156 * t),
+                    b: Math.round(235 * (1 - t) + 38 * t)
+                };
+            }
+
+            pathData.colors.push(color);
+        }
+
+        // Calculate curvatures
+        for (let i = 0; i < samples; i++) {
+            if (i === 0 || i === samples - 1) {
+                pathData.curvatures.push(0);
+            } else {
+                const prev = pathData.points[i - 1];
+                const curr = pathData.points[i];
+                const next = pathData.points[i + 1];
+
+                const dx1 = curr.x - prev.x;
+                const dy1 = curr.y - prev.y;
+                const dx2 = next.x - curr.x;
+                const dy2 = next.y - curr.y;
+
+                const angle = Math.atan2(dy2, dx2) - Math.atan2(dy1, dx1);
+                pathData.curvatures.push(Math.abs(angle));
+            }
+        }
+
+        // Normalize curvatures
+        const maxCurve = Math.max(...pathData.curvatures);
+        pathData.curvatures = pathData.curvatures.map(c => c / (maxCurve || 1));
+
+        // Output compressed format
+        console.log('Path data extracted. Copy the following:');
+        console.log('const PATH_DATA = ' + JSON.stringify(pathData));
+
+        // Also create a download link
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(pathData, null, 2));
+        const downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", "pathData.json");
+        document.body.appendChild(downloadAnchorNode);
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+    </script>
+</body>
+</html>
