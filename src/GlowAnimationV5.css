@@ -1,0 +1,16 @@
+.glow-animation-container-v5 {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.main-svg-v5 {
+  width: 100px;
+  height: 100px;
+  z-index: 1;
+  overflow: visible;
+}

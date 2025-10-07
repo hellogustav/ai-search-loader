@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow Animation - React Component</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .info {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            color: #cbd5e1;
+        }
+
+        .info a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        .info a:hover {
+            text-decoration: underline;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: left;
+            font-family: 'Courier New', monospace;
+            color: #93c5fd;
+            overflow-x: auto;
+        }
+
+        .preview {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px auto;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: inline-block;
+        }
+
+        .file-list {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .file-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .file-list li {
+            padding: 8px 0;
+            color: #cbd5e1;
+        }
+
+        .file-list li:before {
+            content: "📄 ";
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 Glow Animation Component</h1>
+
+        <div class="info">
+            <p>This is a React/TypeScript component that creates a beautiful animated glowing orb following a custom SVG path.</p>
+
+            <div class="file-list">
+                <h2>Files Created:</h2>
+                <ul>
+                    <li>GlowAnimation.tsx - Main component</li>
+                    <li>GlowAnimation.css - Styles</li>
+                    <li>App.tsx - Demo application</li>
+                    <li>App.css - Demo styles</li>
+                    <li>README.md - Documentation</li>
+                </ul>
+            </div>
+
+            <div class="code-block">
+                <strong>To use this component:</strong><br><br>
+                1. Set up a React + TypeScript project:<br>
+                <code>npx create-react-app my-app --template typescript</code><br><br>
+
+                2. Copy the component files to your project<br><br>
+
+                3. Import and use:<br>
+                <code>import GlowAnimation from './GlowAnimation';</code><br>
+                <code>&lt;GlowAnimation /&gt;</code><br><br>
+
+                <strong>Props:</strong><br>
+                • duration?: number (default: 4)<br>
+                • trailLength?: number (default: 15)<br>
+                • showTrail?: boolean (default: true)<br>
+                • showShimmer?: boolean (default: true)<br>
+                • className?: string
+            </div>
+        </div>
+
+        <div class="preview">
+            <p style="color: #94a3b8; margin-bottom: 20px;">Component Preview</p>
+            <div style="width: 220px; height: 220px; background: rgba(0,0,0,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #64748b;">
+                Import the React component<br>to see the animation
+            </div>
+        </div>
+
+        <div class="info">
+            <p><strong>Features:</strong></p>
+            <p>✨ Smooth path following animation<br>
+            🌟 Customizable trail particles<br>
+            ✨ Shimmer sparkle effects<br>
+            🎨 Gradient colored @ symbol path<br>
+            ⚡ GPU-accelerated performance</p>
+        </div>
+    </div>
+</body>
+</html>

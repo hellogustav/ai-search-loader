@@ -1,0 +1,31 @@
+.glow-animation-container-v4 {
+  position: relative;
+  width: 340px;
+  height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.main-svg-v4 {
+  width: 220px;
+  height: 220px;
+  z-index: 1;
+  overflow: visible;
+}
+
+/* Rainbow path animation layers */
+.rainbow-path-outer,
+.rainbow-path-mid,
+.rainbow-path-inner {
+  filter: blur(2px) drop-shadow(0 0 8px currentColor);
+}
+
+.rainbow-path-mid {
+  filter: blur(1px) drop-shadow(0 0 6px currentColor);
+}
+
+.rainbow-path-inner {
+  filter: drop-shadow(0 0 4px currentColor) drop-shadow(0 0 8px currentColor);
+}
