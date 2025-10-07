@@ -1,66 +1,115 @@
-# Glow Animation Component
+# AI Search Loader Animation Collection
 
-A beautiful React/TypeScript component that creates an animated glowing orb following a custom SVG path with trail and shimmer effects.
+A collection of 8 beautiful animated loading components for React applications, featuring neon trails, gradient text animations, and smooth transitions. Perfect for AI-powered search interfaces and modern web applications.
+
+🚀 **[Live Demo](https://ai-search-loader-demo-33db839f2540.herokuapp.com/)**
 
 ## Features
 
-- ✨ Smooth animation following a custom @ symbol path
-- 🌟 Customizable trail particles
-- ✨ Shimmer sparkle effects
-- 🎨 Gradient colored path
-- ⚡ GPU-accelerated animations
-- 📦 TypeScript support
-- 🎛️ Fully customizable props
+- 🎨 **8 Different Animations** - From simple spinners to complex neon trails
+- ✨ **Neon Trail Effects** - Smooth animated trails with gradient colors
+- 📝 **Typewriter Text Animation** - AI search messages with typewriter effect
+- 🌈 **Gradient Text Effects** - Animated color-shifting text
+- 🌙 **Dark/Light Theme Support** - Automatic theme adaptation
+- ⚡ **GPU-Accelerated** - Smooth 60fps animations
+- 📱 **Fully Responsive** - Works on all screen sizes
+- 🎛️ **Highly Customizable** - Easy to configure and extend
+- 📦 **TypeScript Support** - Full type definitions included
+
+## Available Animations
+
+1. **V1** - Original shimmer animation with trail effects
+2. **V1.1** - Enhanced neon trail with continuous glow
+3. **V2** - Lightweight animation with single trail
+4. **V3** - High-performance version with optimized rendering
+5. **V4** - Extended trail with smooth transitions
+6. **V5** - Multi-particle effects with variations
+7. **V6** - Multiple tracer animations (Spin, Pulse, Wave, Orbit)
+8. **V7** - Production-ready standalone component
+9. **V8** - AI Search Loader with typewriter text animations
 
 ## Installation
 
-1. Copy the following files to your React project:
-   - `GlowAnimation.tsx`
-   - `GlowAnimation.css`
+### For the full collection:
 
-2. Import the component:
-
-```tsx
-import GlowAnimation from './GlowAnimation';
+1. Clone the repository:
+```bash
+git clone https://github.com/hellogustav/ai-search-loader.git
 ```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Run the demo:
+```bash
+npm start
+```
+
+### For individual components:
+
+Copy the desired component files to your React project:
+- `GlowAnimationV7.tsx` - Standalone production version
+- `GlowAnimationV8.tsx` & `GlowAnimationV8.css` - Version with text animations
 
 ## Usage
 
 ### Basic Usage
 
 ```tsx
-import GlowAnimation from './GlowAnimation';
+import GlowAnimationV7 from './GlowAnimationV7';
 
 function App() {
   return (
     <div>
-      <GlowAnimation />
+      <GlowAnimationV7 />
     </div>
   );
 }
 ```
 
-### With Custom Props
+### With Loading Text (V8)
 
 ```tsx
-<GlowAnimation
-  duration={3}           // Animation completes in 3 seconds
-  trailLength={20}       // 20 trail particles
-  showTrail={true}       // Show trailing particles
-  showShimmer={true}     // Show shimmer effects
-  className="my-custom-class"
-/>
+import GlowAnimationV8 from './GlowAnimationV8';
+import './GlowAnimationV8.css';
+
+function App() {
+  return (
+    <GlowAnimationV8
+      messages={[
+        "Searching database...",
+        "Analyzing results...",
+        "Preparing recommendations..."
+      ]}
+      textAnimation="typewriter"
+    />
+  );
+}
 ```
 
 ## Props
 
+### GlowAnimationV7 Props
+
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `duration` | `number` | `4` | Animation duration in seconds |
-| `trailLength` | `number` | `15` | Number of trail particles to render |
-| `showTrail` | `boolean` | `true` | Enable/disable trail effect |
-| `showShimmer` | `boolean` | `true` | Enable/disable shimmer sparkles |
-| `className` | `string` | `''` | Additional CSS class names |
+| `duration` | `number` | `2.24` | Animation duration in seconds |
+| `reverse` | `boolean` | `false` | Reverse animation direction |
+| `ariaLabel` | `string` | `"Animated neon trail..."` | Accessibility label |
+
+### GlowAnimationV8 Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `duration` | `number` | `2.24` | Spinner animation duration |
+| `reverse` | `boolean` | `false` | Reverse spinner direction |
+| `showText` | `boolean` | `true` | Show/hide loading text |
+| `textChangeInterval` | `number` | `2.5` | Text change interval (seconds) |
+| `textAnimation` | `string` | `'typewriter'` | Animation style: `'typewriter'`, `'fade'`, `'slide'`, `'flip'`, `'blur'` |
+| `messages` | `string[]` | *(20 default messages)* | Custom loading messages |
+| `className` | `string` | `''` | Additional CSS class |
 
 ## Customization
 
