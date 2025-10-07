@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import GlowAnimation from './GlowAnimation';
+import GlowAnimationV1_1 from './GlowAnimationV1_1';
 import GlowAnimationV2 from './GlowAnimationV2';
 import GlowAnimationV3 from './GlowAnimationV3';
 import GlowAnimationV4 from './GlowAnimationV4';
@@ -9,7 +10,7 @@ import './App.css';
 
 function App() {
   const [isDark, setIsDark] = useState(true);
-  const [activeTab, setActiveTab] = useState<'v1' | 'v2' | 'v3' | 'v4' | 'v5' | 'v6'>('v1');
+  const [activeTab, setActiveTab] = useState<'v1' | 'v1.1' | 'v2' | 'v3' | 'v4' | 'v5' | 'v6'>('v1');
   const [v6SubTab, setV6SubTab] = useState<'default' | 'trail' | 'speed' | 'background' | 'trace' | 'colors' | 'large'>('default');
 
   return (
@@ -28,6 +29,12 @@ function App() {
             onClick={() => setActiveTab('v1')}
           >
             V1 - Particles
+          </button>
+          <button
+            className={`tab ${activeTab === 'v1.1' ? 'active' : ''}`}
+            onClick={() => setActiveTab('v1.1')}
+          >
+            V1.1 - Neon Trail
           </button>
           <button
             className={`tab ${activeTab === 'v2' ? 'active' : ''}`}
@@ -83,6 +90,16 @@ function App() {
             <div className="animation-wrapper">
               <h2>Long Trail</h2>
               <GlowAnimation trailLength={30} />
+            </div>
+          </>
+        )}
+
+        {activeTab === 'v1.1' && (
+          <>
+            <h2 style={{ color: '#8A5CFF', marginTop: '40px', marginBottom: '20px' }}>Version 1.1 - Dynamic Neon Trail</h2>
+            <div className="animation-wrapper">
+              <h2>Full Trail with 4px Dot</h2>
+              <GlowAnimationV1_1 />
             </div>
           </>
         )}
